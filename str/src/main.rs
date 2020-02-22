@@ -10,7 +10,6 @@ fn main() {
     println!("{}", pig_latin(&mut x));
 }
 
-// i
 fn pig_latin(s: &mut String) -> String {
     let vowels = String::from("aeiou");
     let mut first_char = s.chars().nth(0).unwrap();
