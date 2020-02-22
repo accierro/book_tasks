@@ -57,6 +57,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 
 // Same function as above, but it has shorthand
+// ? can be use in functions that return Result
 fn read_username_from_file_with_shorhand() -> Result<String, io::Error> {
     let mut f = File::open("hello.txt")?;
     let mut s = String::new();
