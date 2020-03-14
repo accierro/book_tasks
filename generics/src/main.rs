@@ -3,9 +3,9 @@ struct Point<T> {
     y: T,
 }
 
-// Note: we have to declare T justt after impl sp we can use it to specify
+// Note: we have to declare T just after impl so we can use it to specify
 // that we're implemneting methods on the typy Point<T>. In that case Rust
-// can identify that the typ in the angle brackets in Point is a generic
+// can identify that the type in the angle brackets in Point is a generic
 // type rather than a concrete type.
 impl<T> Point<T> {
     fn x(&self) -> &T {
@@ -22,14 +22,17 @@ impl Point<f32> {
     }
 }
 
-struct Point<T, U> {
+struct Point2<T, U> {
     x: T,
     y: U,
 }
 
-impl<T, U> Point<T, U> {
-    fn mixup<V, W>(self, other: Point<V, W>) -> Point<T, W> {
-        Point {
+// We can mixing types in that case function mixup takes itself and otehr
+// point as parameters and produces a new point with x value from self
+// and y value from another point
+impl<T, U> Point2<T, U> {
+    fn mixup<V, W>(self, other: Point2<V, W>) -> Point2<T, W> {
+        Point2 {
             x: self.x,
             y: other.y,
         }
@@ -51,7 +54,7 @@ fn main() {
     println!("{}", result)
 }
 
-fn largest<T>(list: &[T]) -> T {
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
 
     for &item in list.iter() {
